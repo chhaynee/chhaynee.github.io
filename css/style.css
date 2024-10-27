@@ -85,12 +85,71 @@ body {
     padding: 0 1rem;
 }
 
+/* Profile Image Container */
+.hero-content {
+    position: relative;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Profile Image Styles */
 .profile-img {
-    width: 150px;
-    height: 150px;
+    width: 350px;
+    height: 350px;
     border-radius: 50%;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     border: 3px solid var(--primary-color);
+    object-fit: cover;
+    object-position: 50% 20%; /* Adjusted to focus on face area */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Cross-browser compatibility */
+    -webkit-object-fit: cover;
+    -moz-object-fit: cover;
+    -o-object-fit: cover;
+    -webkit-object-position: 50% 20%;
+    -moz-object-position: 50% 20%;
+    -o-object-position: 50% 20%;
+    /* Ensure smooth transitions */
+    transition: transform 0.3s ease, border-width 0.3s ease;
+    /* Additional positioning fixes */
+    position: relative;
+    display: block;
+}
+
+/* Container to enforce aspect ratio */
+.profile-img-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 1.5rem;
+}
+
+/* Optional hover effect */
+.profile-img:hover {
+    transform: scale(1.05);
+    border-width: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .profile-img,
+    .profile-img-container {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* Fallback for older browsers */
+@supports not (object-fit: cover) {
+    .profile-img {
+        height: auto;
+        max-width: 100%;
+        margin: 0 auto;
+    }
 }
 
 .hero h1 {
@@ -128,13 +187,21 @@ body {
 
 .about h2 {
     text-align: center;
-    margin-bottom: 3rem;
-    font-size: 2rem;
+    margin-bottom: 6rem;
+    font-size: 3rem;
 }
 
 .about-content {
-    max-width: 1200px;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center; /* Centers the content horizontally */
+    align-items: center;    /* Centers the content vertically */
+    height: 30vh;          /* Full height of the viewport */
+}
+
+.about-text {
+    text-align: justify;    /* Justifies the text */
+    max-width: 600px;      /* Set a maximum width for better readability */
+    padding: 20px;         /* Add some padding around the text */
 }
 
 .skills {
