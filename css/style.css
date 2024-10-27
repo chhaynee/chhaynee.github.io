@@ -195,12 +195,12 @@ body {
     display: flex;
     justify-content: center; /* Centers the content horizontally */
     align-items: center;    /* Centers the content vertically */
-    height: 30vh;          /* Full height of the viewport */
+    height: 100vh;          /* Full height of the viewport */
 }
 
 .about-text {
     text-align: justify;    /* Justifies the text */
-    max-width: 600px;      /* Set a maximum width for better readability */
+    max-width: 2000px;      /* Set a maximum width for better readability */
     padding: 20px;         /* Add some padding around the text */
 }
 
