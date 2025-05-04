@@ -1,17 +1,54 @@
+// Initialize GSAP animations
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
 // Navigation hamburger menu
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
+const navBrand = document.querySelector('.nav-brand');
+
+// Add click event to nav-brand
+navBrand.addEventListener('click', (e) => {
+    e.preventDefault();
+    const homeSection = document.getElementById('home');
+    if (homeSection) {
+        gsap.to(window, {
+            duration: 0.001,
+            scrollTo: {
+                y: homeSection,
+                offsetY: 100
+            },
+            ease: "power1.inOut"
+        });
+    }
+});
 
 hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
 });
 
-// Close menu when clicking a nav link
-document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', () => {
+// Smooth scrolling for navigation links
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Close mobile menu if open
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
+        
+        const targetSection = link.getAttribute('data-section');
+        const targetElement = document.getElementById(targetSection);
+        
+        if (targetElement) {
+            gsap.to(window, {
+                duration: 0.001,
+                scrollTo: {
+                    y: targetElement,
+                    offsetY: 100
+                },
+                ease: "power1.inOut"
+            });
+        }
     });
 });
 
@@ -32,6 +69,155 @@ if (typewriter) {
     type();
 }
 
-// Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.
+// Matrix background effect
+function createMatrixEffect() {
+    const matrixBg = document.querySelector('.matrix-bg');
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    matrixBg.appendChild(canvas);
+    
+    const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+    const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const nums = '0123456789';
+    const alphabet = katakana + latin + nums;
+    
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    
+    const rainDrops = Array(Math.floor(columns)).fill(1);
+    
+    function draw() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#0F0';
+        ctx.font = fontSize + 'px monospace';
+        
+        for(let i = 0; i < rainDrops.length; i++) {
+            const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+            ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+            
+            if(rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                rainDrops[i] = 0;
+            }
+            rainDrops[i]++;
+        }
+    }
+    
+    setInterval(draw, 30);
+}
+
+// Initialize matrix effect
+createMatrixEffect();
+
+// GSAP Animations
+gsap.from('.nav-brand', {
+    duration: 1,
+    y: -50,
+    opacity: 0,
+    ease: 'power2.out'
+});
+
+gsap.from('.nav-link', {
+    duration: 1,
+    y: -50,
+    opacity: 0,
+    stagger: 0.1,
+    ease: 'power2.out'
+});
+
+gsap.from('.terminal-container', {
+    duration: 1.5,
+    y: 50,
+    opacity: 0,
+    ease: 'power2.out'
+});
+
+gsap.from('.glitch-btn', {
+    duration: 1,
+    y: 30,
+    opacity: 0,
+    delay: 1.5,
+    ease: 'power2.out'
+});
+
+// Scroll animations
+gsap.utils.toArray('.about-content, .skills-grid, .project-grid, .leaderboard').forEach(section => {
+    gsap.from(section, {
+        scrollTrigger: {
+            trigger: section,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+        },
+        duration: 1,
+        y: 50,
+        opacity: 0,
+        ease: 'power2.out'
+    });
+});
+
+// Glitch button effect
+const glitchBtn = document.querySelector('.glitch-btn');
+if (glitchBtn) {
+    glitchBtn.addEventListener('mouseover', () => {
+        glitchBtn.style.textShadow = '2px 2px var(--primary-color), -2px -2px var(--secondary-color)';
+        setTimeout(() => {
+            glitchBtn.style.textShadow = 'none';
+        }, 100);
+    });
+}
+
+// Terminal logs animation
+const logEntries = document.querySelectorAll('.log-entry');
+logEntries.forEach((entry, index) => {
+    gsap.from(entry, {
+        duration: 0.5,
+        x: -50,
+        opacity: 0,
+        delay: index * 0.2,
+        ease: 'power2.out'
+    });
+});
+
+// Project card hover effects
+const projectCards = document.querySelectorAll('.project-card');
+projectCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        gsap.to(card, {
+            duration: 0.3,
+            scale: 1.05,
+            ease: 'power2.out'
+        });
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+            duration: 0.3,
+            scale: 1,
+            ease: 'power2.out'
+        });
+    });
+});
+
+// Make section headers clickable and scroll to their section
+['skills', 'projects', 'ctf'].forEach(sectionId => {
+    const header = document.querySelector(`.${sectionId} h2`);
+    if (header) {
+        header.addEventListener('click', () => {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                gsap.to(window, {
+                    duration: 0.5,
+                    scrollTo: {
+                        y: section,
+                        offsetY: 70
+                    },
+                    ease: "power1.inOut"
+                });
+            }
+        });
+    }
+});
