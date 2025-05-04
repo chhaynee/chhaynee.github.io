@@ -22,14 +22,26 @@ navBrand.addEventListener('click', (e) => {
     }
 });
 
-hamburger.addEventListener('click', () => {
+// Touch and click event handler for hamburger menu
+const toggleMenu = () => {
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
+};
+
+hamburger.addEventListener('click', toggleMenu);
+hamburger.addEventListener('touchstart', toggleMenu);
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+    }
 });
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', (e) => {
+    const handleClick = (e) => {
         e.preventDefault();
         
         // Close mobile menu if open
@@ -49,7 +61,10 @@ document.querySelectorAll('.nav-link').forEach(link => {
                 ease: "power1.inOut"
             });
         }
-    });
+    };
+
+    link.addEventListener('click', handleClick);
+    link.addEventListener('touchstart', handleClick);
 });
 
 // Typewriter effect
@@ -72,11 +87,18 @@ if (typewriter) {
 // Matrix background effect
 function createMatrixEffect() {
     const matrixBg = document.querySelector('.matrix-bg');
+    if (!matrixBg) return;
+
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // Set canvas size
+    const resizeCanvas = () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    };
+    
+    resizeCanvas();
     matrixBg.appendChild(canvas);
     
     const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
@@ -107,7 +129,19 @@ function createMatrixEffect() {
         }
     }
     
-    setInterval(draw, 30);
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        resizeCanvas();
+        draw();
+    });
+    
+    // Start animation
+    const animationInterval = setInterval(draw, 30);
+    
+    // Cleanup on page unload
+    window.addEventListener('unload', () => {
+        clearInterval(animationInterval);
+    });
 }
 
 // Initialize matrix effect
@@ -136,14 +170,6 @@ gsap.from('.terminal-container', {
     ease: 'power2.out'
 });
 
-gsap.from('.glitch-btn', {
-    duration: 1,
-    y: 30,
-    opacity: 0,
-    delay: 1.5,
-    ease: 'power2.out'
-});
-
 // Scroll animations
 gsap.utils.toArray('.about-content, .skills-grid, .project-grid, .leaderboard').forEach(section => {
     gsap.from(section, {
@@ -158,17 +184,6 @@ gsap.utils.toArray('.about-content, .skills-grid, .project-grid, .leaderboard').
         ease: 'power2.out'
     });
 });
-
-// Glitch button effect
-const glitchBtn = document.querySelector('.glitch-btn');
-if (glitchBtn) {
-    glitchBtn.addEventListener('mouseover', () => {
-        glitchBtn.style.textShadow = '2px 2px var(--primary-color), -2px -2px var(--secondary-color)';
-        setTimeout(() => {
-            glitchBtn.style.textShadow = 'none';
-        }, 100);
-    });
-}
 
 // Terminal logs animation
 const logEntries = document.querySelectorAll('.log-entry');
@@ -185,28 +200,25 @@ logEntries.forEach((entry, index) => {
 // Project card hover effects
 const projectCards = document.querySelectorAll('.project-card');
 projectCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
+    const handleHover = (isEnter) => {
         gsap.to(card, {
             duration: 0.3,
-            scale: 1.05,
+            scale: isEnter ? 1.05 : 1,
             ease: 'power2.out'
         });
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-            duration: 0.3,
-            scale: 1,
-            ease: 'power2.out'
-        });
-    });
+    };
+
+    card.addEventListener('mouseenter', () => handleHover(true));
+    card.addEventListener('mouseleave', () => handleHover(false));
+    card.addEventListener('touchstart', () => handleHover(true));
+    card.addEventListener('touchend', () => handleHover(false));
 });
 
 // Make section headers clickable and scroll to their section
 ['skills', 'projects', 'ctf'].forEach(sectionId => {
     const header = document.querySelector(`.${sectionId} h2`);
     if (header) {
-        header.addEventListener('click', () => {
+        const handleClick = () => {
             const section = document.getElementById(sectionId);
             if (section) {
                 gsap.to(window, {
@@ -218,6 +230,15 @@ projectCards.forEach(card => {
                     ease: "power1.inOut"
                 });
             }
-        });
+        };
+
+        header.addEventListener('click', handleClick);
+        header.addEventListener('touchstart', handleClick);
     }
 });
+
+// Handle reduced motion preferences
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+if (prefersReducedMotion.matches) {
+    document.documentElement.style.setProperty('--transition', 'none');
+}

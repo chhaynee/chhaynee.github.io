@@ -2,7 +2,10 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="theme-color" content="#0a0a0a">
+        <meta name="description" content="DanxWorld - Cybersecurity Portfolio">
         <title>DanxWorld</title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -13,6 +16,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
         <link rel="icon" href="Image/icon.png" type="image/x-icon">
+        <!-- Fallback for browsers that don't support CSS variables -->
+        <script>
+            if (!window.CSS || !CSS.supports('color', 'var(--primary-color)')) {
+                document.documentElement.className += ' no-css-vars';
+            }
+        </script>
     </head>
     
 <body>
@@ -76,7 +85,6 @@ My journey began with passion-driven curiosity in penetration testing, evolved t
                     </pre>
                 </div>
             </div>
-            <a href="#projects" class="glitch-btn">See My Work</a>
         </div>
     </section>
 
