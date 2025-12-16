@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="theme-color" content="#0a0a0a">
+        <meta name="description" content="chhaynee - Cybersecurity Portfolio">
+        <title>chhaynee</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+        <link rel="icon" href="Image/icon.png" type="image/x-icon">
+        <!-- Fallback for browsers that don't support CSS variables -->
+        <script>
+            if (!window.CSS || !CSS.supports('color', 'var(--primary-color)')) {
+                document.documentElement.className += ' no-css-vars';
+            }
+        </script>
+    </head>
+    
+<body>
+    <div class="matrix-bg"></div>
+    <div class="cyber-globe"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">chhaynee</div>
+        <ul class="nav-menu">
+            <li><a href="#home" class="nav-link" data-section="home">Home</a></li>
+            <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+            <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+            <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+            <li><a href="#ctf" class="nav-link" data-section="ctf">Achievements</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="terminal-container">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <span class="control close"></span>
+                        <span class="control minimize"></span>
+                        <span class="control maximize"></span>
+                    </div>
+                </div>
+                <div class="terminal-body">
+                    <pre class="terminal-screen">
+<span class="prompt"><span class="user">chhaynee</span>@<span class="host">chhaynee</span>:~$</span> whoami
+<span class="output">chhaynee — Red Team Operator | Exploit Developer | Blockchain Hacker</span>
+<span class="prompt"><span class="user">chhaynee</span>@<span class="host">chhaynee</span>:~$</span> bio
+<span class="output">I'm Seak Chhaynee, an offensive security practitioner deeply focused on red teaming, malware development, and advanced exploitation techniques.
+My journey began with passion-driven curiosity in penetration testing, evolved through mastering CTFs, and now spans into full-spectrum cyber operations, from web/app pentesting to lateral movement, persistence, and cloud attack surfaces.</span>
+<span class="prompt"><span class="user">chhaynee</span>@<span class="host">chhaynee</span>:~$</span> mission
+<span class="output">Delivering adversary simulation, threat emulation, and real-world attack chains to help organizations build true cyber resilience.</span>
+<span class="prompt"><span class="user">chhaynee</span>@<span class="host">chhaynee</span>:~$</span> core_skills --list
+<span class="output">[+] Red Teaming
+[+] Malware Development (Windows/Linux)
+[+] Custom Exploit & Payload Creation
+[+] Privilege Escalation & Credential Dumping
+[+] Blockchain & Smart Contract Hacking
+[+] Web, API, and Mobile App Pentesting
+[+] Threat Emulation & Post-Exploitation</span>
+<span class="prompt"><span class="user">chhaynee</span>@<span class="host">chhaynee</span>:~$</span> ctf --highlights
+<span class="output">🏆 Codegate, ACS-ESP 2025 — Team Leader
+🎯 Blockchain Exploitation Challenges
+🔐 Memory Forensics & Reverse Engineering
+🌐 Web Exploit Automation Scripts</span>
+<span class="prompt"><span class="user">chhaynee</span>@<span class="host">chhaynee</span>:~$</span> philosophy
+<span class="output">Maybe not today, and maybe not tomorrow, one day you will be a champion. Just do it, Keep grinding.</span>
+<span class="prompt"><span class="user">chhaynee</span>@<span class="host">chhaynee</span>:~$</span> status
+<span class="output">Always learning. Always hacking. Always moving forward.</span>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <div class="about-image">
+                <div class="cyber-portrait"></div>
+                <div class="neon-border"></div>
+            </div>
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>Dedicated offensive security professional specializing in red team operations, blockchain security, and competitive CTF challenges. With extensive experience in penetration testing and vulnerability research, I focus on identifying and exploiting security weaknesses in complex systems.</p>
+                <div class="terminal-logs">
+                    <div class="log-entry">[+] Red Team Operations: 3+ years</div>
+                    <div class="log-entry">[+] Blockchain Security Research: 2+ years</div>
+                    <div class="log-entry">[+] CTF Competitions: 50+ events</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <h2>Core Competencies</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Red Teaming</h3>
+                <div class="skill-items">
+                    <div class="skill-item">
+                        <span>Advanced Persistent Threats</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>Lateral Movement</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Web & API Security</h3>
+                <div class="skill-items">
+                    <div class="skill-item">
+                        <span>Web Penetration Testing</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>API Application Security</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <h2>Featured Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Smart Contract Auditor</h3>
+                    <p>Advanced tool for automated smart contract vulnerability detection</p>
+                    <div class="tech-stack">
+                        <span>Solidity</span>
+                        <span>Python</span>
+                        <span>Web3</span>
+                    </div>
+                    <a href="https://github.com/chhaynee" class="github-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Red Team Toolkit</h3>
+                    <p>Custom framework for red team operations and post-exploitation</p>
+                    <div class="tech-stack">
+                        <span>Python</span>
+                        <span>C++</span>
+                        <span>PowerShell</span>
+                    </div>
+                    <a href="https://github.com/chhaynee" class="github-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>CTF Challenge Generator</h3>
+                    <p>Automated CTF challenge creation and deployment system</p>
+                    <div class="tech-stack">
+                        <span>Docker</span>
+                        <span>Python</span>
+                        <span>Node.js</span>
+                    </div>
+                    <a href="https://github.com/chhaynee" class="github-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTF Section -->
+    <section id="ctf" class="ctf">
+        <h2>CTF Achievements</h2>
+        <div class="leaderboard">
+            <div class="leaderboard-header">
+                <span>Event</span>
+                <span>Rank</span>
+                <span>Score</span>
+                <span>Role</span>
+            </div>
+            <div class="leaderboard-entry">
+                <span>HTB CYBER APOCALYPSE CTF 2025</span>
+                <span>142/8130 globally</span>
+                <span>66/77 challenges</span>
+                <span>Web Exploitation</span>
+            </div>
+            <div class="leaderboard-entry">
+                <span>HTB University CTF 2024</span>
+                <span>394/1128</span>
+                <span>21/49 challenges</span>
+                <span>Web, Crypto</span>
+            </div>
+            <div class="leaderboard-entry">
+                <span>ACS Hacking Contest 2024</span>
+                <span>Top 20</span>
+                <span>2000</span>
+                <span>Team Lead</span>
+            </div>
+            <div class="leaderboard-entry">
+                <span>ASEAN-Swiss Online CTF 2024</span>
+                <span>Top 8</span>
+                <span>1620</span>
+                <span>Web Exploitation</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="terminal-footer">
+            <p>© 2025 CHHAYNEE | Built with 💻 in Cyber Mode</p>
+            <div class="social-links">
+                <a href="https://github.com/chhaynee" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://app.hackthebox.com/profile/overview" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-cube"></i>
+                </a>
+                <a href="https://tryhackme.com/p/chhaynee" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-shield-alt"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/seakchhaynee" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
